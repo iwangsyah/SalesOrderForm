@@ -14,12 +14,12 @@ import {
 import TypeaheadDooring from './TypeaheadDooring'
 import TypeaheadShipment from './TypeaheadShipment'
 import styles from '../styles/form'
+import {send} from './action'
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      imagePath: '',
       title: '',
       date: '',
       sales: '',
@@ -36,6 +36,7 @@ export default class App extends React.Component {
       modal: '',
       price: ''
     };
+    this.send = this.send.bind(this)
   }
 
 
@@ -51,9 +52,17 @@ export default class App extends React.Component {
     return (
       <View style={[styles.button, {paddingBottom:200}]}>
           <Button
+            onPress={this.send}
             title="Send Mail"/>
       </View>
     )
+  }
+
+  send() {
+    console.log(this.state);
+    let nama = "wahyu"
+    let umur = 22
+    send(nama,umur, this.state)
   }
 
 
@@ -109,6 +118,7 @@ export default class App extends React.Component {
 
 
   render() {
+    console.log(this.state.sales);
     let header = this.renderHeader()
     let button = this.renderButton()
     let dooring = this.renderRoomContainerDooring()

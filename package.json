@@ -7,9 +7,13 @@
     "test": "jest"
   },
   "dependencies": {
+    "express": "^4.16.2",
+    "humps": "^2.0.1",
     "lodash": "^4.17.5",
+    "mailgun-js": "^0.14.2",
     "react": "16.2.0",
-    "react-native": "0.53.0"
+    "react-native": "0.53.0",
+    "redux": "^3.7.2"
   },
   "devDependencies": {
     "babel-jest": "22.2.0",
