@@ -73,6 +73,7 @@ export default class App extends React.Component {
                        {name:"TROFIS"}]
     return(
       <TypeaheadDooring
+        ref='ThirdInput'
         units={dooringList}
         filterGlCode={this.state.dooring}
         changeFilter={this.changeFilterDooring.bind(this)}
@@ -145,16 +146,15 @@ export default class App extends React.Component {
               <TextInput
                 ref='SecondInput'
                 autoCorrect={false}
-                returnKeyType='next'
+                returnKeyType='done'
                 underlineColorAndroid='transparent'
                 onChangeText={newText => this.setState({destination: newText})}
                 value={this.state.destination}
-                onSubmitEditing={(event) => {this.refs.ThirdInput.focus()}}
               />
             </View>
 
             <Text style={styles.textTitle}>Pelayaran</Text>
-            {dooring}
+            {shipment}
 
             <Text style={styles.textTitle}>Agent</Text>
             <View style={styles.input}>
@@ -226,11 +226,10 @@ export default class App extends React.Component {
               <TextInput
                   ref='NineInput'
                   autoCorrect={false}
-                  returnKeyType='next'
+                  returnKeyType='done'
                   underlineColorAndroid='transparent'
                   onChangeText={newText => this.setState({trucking: newText})}
                   value={this.state.trucking}
-                  onSubmitEditing={(event) => {this.refs.TenInput.focus()}}
                 />
             </View>
 

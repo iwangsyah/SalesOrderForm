@@ -26,13 +26,6 @@ export default StyleSheet.create({
     color: '#666666'
   },
   input: {
-    padding: 5,
-    height: 30,
-    width: '90%',
-    alignSelf: 'center',
     backgroundColor: '#FFFFFF',
-    borderWidth: 1,
-    borderRadius: 5,
-    paddingLeft: 10,
   },
 })

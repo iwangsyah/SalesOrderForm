@@ -11,7 +11,8 @@ export default StyleSheet.create({
     borderWidth:1,
     height: 32,
     width: '90%',
-    alignSelf: 'center'
+    alignSelf: 'center',
+    borderRadius:5
   },
   text: {
     marginTop: 15,

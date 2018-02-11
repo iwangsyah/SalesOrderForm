@@ -3,6 +3,7 @@ import { View, Text, TextInput, ListView, TouchableOpacity, ScrollView } from 'r
 //import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import _ from 'lodash'
 import styles from '../styles/typeaheadDooring'
+import styless from '../styles/form'
 
 //
 // TODO: Implement completed results caching
@@ -47,14 +48,15 @@ export default class TypeaheadUnit extends Component {
 
     return (
       <View style={[styles.typeahead, customStyle]}>
+        <View style={styless.input}>
           <TextInput
             underlineColorAndroid='transparent'
-            style={styles.input}
             value={filterGlCode}
             autoCorrect={false}
             keyboardType='ascii-capable'
             onChangeText={this.onChangeFilter.bind(this)} />
         {listView}
+        </View>
       </View>
     )
   }
