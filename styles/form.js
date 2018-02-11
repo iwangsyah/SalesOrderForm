@@ -3,19 +3,15 @@ import { StyleSheet } from 'react-native'
 export default StyleSheet.create({
   container: {
     backgroundColor: 'white',
-    width: 360,
+    width: '100%',
   },
   containerForm: {
   },
   input: {
-    padding: 5,
-    height: 30,
-    width: 300,
-    alignSelf: 'center',
-    backgroundColor: '#FFFFFF',
-    borderWidth: 1,
-    borderRadius: 5,
-    paddingLeft: 10,
+    borderWidth:1,
+    height: 32,
+    width: '90%',
+    alignSelf: 'center'
   },
   text: {
     marginTop: 15,

@@ -9,6 +9,7 @@ import {
   View,
   Button
 } from 'react-native'
+import styles from '../../styles/form'
 
 export default class Login extends React.Component {
   constructor(props) {
@@ -20,9 +21,6 @@ export default class Login extends React.Component {
 
   render() {
      return (
-       // Try setting `alignItems` to 'flex-start'
-       // Try setting `justifyContent` to `flex-end`.
-       // Try setting `flexDirection` to `row`.
        <View style={{
          flex: 1,
          flexDirection: 'column',
@@ -31,6 +29,18 @@ export default class Login extends React.Component {
        }}>
          <View style={{width: '80%', height: '20%', backgroundColor: 'skyblue'}}>
           <Text>Masuk dengan Email</Text>
+          <TextInput
+            autoCorrect={false}
+            underlineColorAndroid='transparent'
+            placeholder='Email'
+            placeholderTextColor='grey'
+            autoCapitalize='none'
+            style={styles.input}
+            onChangeText={newText => this.setState({userEmail: newText})} value={this.state.userEmail}
+          />
+              <Button
+                onPress={this.send}
+                title="Send Mail"/>
          </View>
        </View>
      );
