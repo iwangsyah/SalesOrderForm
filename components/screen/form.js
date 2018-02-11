@@ -11,7 +11,7 @@ import {
 } from 'react-native'
 
 // import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-import TypeaheadDooring from '../TypeaheadDooring'
+import TypeaheadTrucking from '../TypeaheadTrucking'
 import TypeaheadShipment from '../TypeaheadShipment'
 import styles from '../../styles/form'
 import {send} from '../action'
@@ -59,34 +59,33 @@ export default class App extends React.Component {
   }
 
   send() {
-    console.log(this.state);
-    let nama = "wahyu"
-    let umur = 22
-    send(nama,umur, this.state)
+    let nama = "vicky"
+    let umur = 27
+    send(nama,umur)
   }
 
 
 
 //Dooring
-  renderRoomContainerDooring() {
-    let dooringList = [{name:"MGT"},
-                       {name:"TROFIS"}]
+  renderRoomContainerTrucking() {
+    let truckingList = [{name:"MGT"},
+                       {name:"TROFIS"},
+                       {name:"AST"}]
     return(
-      <TypeaheadDooring
-        ref='ThirdInput'
-        units={dooringList}
-        filterGlCode={this.state.dooring}
-        changeFilter={this.changeFilterDooring.bind(this)}
-        onChange={this.setDooringTypeahead.bind(this)}/>
+      <TypeaheadTrucking
+        units={truckingList}
+        filterGlCode={this.state.trucking}
+        changeFilter={this.changeFilterTrucking.bind(this)}
+        onChange={this.setTruckingTypeahead.bind(this)}/>
     )
   }
 
-  setDooringTypeahead(dooring) {
-    this.setState({ dooring: dooring })
+  setTruckingTypeahead(trucking) {
+    this.setState({ trucking: trucking })
   }
 
-  changeFilterDooring(filterDooring) {
-    this.setState({ dooring: filterDooring})
+  changeFilterTrucking(filterTrucking) {
+    this.setState({ trucking: filterTrucking})
   }
 
 
@@ -121,7 +120,7 @@ export default class App extends React.Component {
   render() {
     let header = this.renderHeader()
     let button = this.renderButton()
-    let dooring = this.renderRoomContainerDooring()
+    let trucking = this.renderRoomContainerTrucking()
     let shipment = this.renderRoomContainerShipment()
     return (
       <View>
@@ -156,7 +155,10 @@ export default class App extends React.Component {
             <Text style={styles.textTitle}>Pelayaran</Text>
             {shipment}
 
-            <Text style={styles.textTitle}>Agent</Text>
+            <Text style={styles.textTitle}>Trucking</Text>
+            {trucking}
+
+            <Text style={styles.textTitle}>Agent Dooring</Text>
             <View style={styles.input}>
               <TextInput
                 ref='FourInput'
@@ -182,7 +184,7 @@ export default class App extends React.Component {
               />
             </View>
 
-            <Text style={styles.textTitle}>Equipment</Text>
+            <Text style={styles.textTitle}>Desc. of Good</Text>
             <View style={styles.input}>
               <TextInput
                 ref='SixInput'
@@ -204,6 +206,7 @@ export default class App extends React.Component {
                 underlineColorAndroid='transparent'
                 onChangeText={newText => this.setState({freight: newText})}
                 value={this.state.freight}
+                keyboardType='numeric'
                 onSubmitEditing={(event) => {this.refs.EightInput.focus()}}
               />
             </View>
@@ -221,7 +224,7 @@ export default class App extends React.Component {
                 />
             </View>
 
-            <Text style={styles.textTitle}>Trucking</Text>
+            <Text style={styles.textTitle}> Harga Trucking</Text>
             <View style={styles.input}>
               <TextInput
                   ref='NineInput'
@@ -233,8 +236,17 @@ export default class App extends React.Component {
                 />
             </View>
 
-            <Text style={styles.textTitle}>Dooring</Text>
-            {dooring}
+            <Text style={styles.textTitle}>Harga Dooring</Text>
+            <View style={styles.input}>
+              <TextInput
+                  ref='NineInput'
+                  autoCorrect={false}
+                  returnKeyType='done'
+                  underlineColorAndroid='transparent'
+                  onChangeText={newText => this.setState({trucking: newText})}
+                  value={this.state.trucking}
+                />
+            </View>
 
             <Text style={[styles.textTitle, {marginTop:0}]}>DOC</Text>
             <View style={styles.input}>
@@ -273,9 +285,7 @@ export default class App extends React.Component {
                 />
             </View>
 
-            <TouchableHighlight>
               {button}
-            </TouchableHighlight>
 
           </ScrollView>
       </View>

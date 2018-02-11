@@ -1,7 +1,6 @@
-export function send(nama, umur, state) {
+export function send(nama, umur) {
   console.log('nama: ', nama);
   console.log('umur: ', umur);
-  console.log('state: ', state);
   fetch('http://localhost:8080/api/sendmail', {
     method: 'POST',
     headers: {

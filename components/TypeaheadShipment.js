@@ -55,8 +55,8 @@ export default class TypeaheadUnit extends Component {
             autoCorrect={false}
             keyboardType='ascii-capable'
             onChangeText={this.onChangeFilter.bind(this)} />
-        {listView}
         </View>
+        {listView}
       </View>
     )
   }
