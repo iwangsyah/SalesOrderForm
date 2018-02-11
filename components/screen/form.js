@@ -14,6 +14,7 @@ import {
 import TypeaheadTrucking from '../TypeaheadTrucking'
 import TypeaheadShipment from '../TypeaheadShipment'
 import TypeaheadDestination from '../TypeaheadDestination'
+import TypeaheadDooring from '../TypeaheadDooring'
 import styles from '../../styles/form'
 import {send} from '../action'
 
@@ -21,25 +22,50 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: '',
-      date: '',
       sales: '',
       destination: '',
       shipment: '',
-      agent: '',
+      trucking: '',
+      agentDooring: '',
       party: '',
-      equipment: '',
+      descOfGood: '',
       freight: '',
       thc: '',
-      trucking: '',
-      dooring: '',
+      truckingPrice: '',
+      dooringPrice: '',
       doc: '',
       modal: '',
-      price: ''
+      price: '',
+      destinationList: [{kode:"BLW", name:"(BLW) - Belawan", door:"(BLW) - CV Armada Sejahtera Trans"},
+                       {kode:"PBR", name:"(PBR) - Pekanbaru", door:"(PBR) - PT. Sarana Tata Indoraya"},
+                       {kode:"BTM", name:"(BTM) - Batam", door:"(BTM) - PT. Melvin Prima Perkasa"},
+                       {kode:"BJM", name:"(BJM) - Banjarmasin", door:"(BJM) - PT. Putra Fajar Samudra Indonesia"},
+                       {kode:"BPP", name:"(BPP) - Balikpapan", door:"(BPP) - PT. Wahyu Abadi Transport"},
+                       {kode:"SMR", name:"(SMR) - Samarinda", door:"(SMR) - PT. Karya Prima Nusantara"},
+                       {kode:"TAR", name:"(TAR) - Tarakan", door:"(TAR) - PT. Wira Laut"},
+                       {kode:"BER", name:"(BER) - Berau", door:"(BER) - TKBM BERAU"},
+                       {kode:"NNK", name:"(NNK) - Nunukan", door:"(NNK) - PELINDO NUNUKAN"},
+                       {kode:"SPT", name:"(SPT) - Sampit", door:"(SPT) - PT. Palapa Wahana Sakti"},
+                       {kode:"PTK", name:"(PTK) - Pontianak", door:"(PTK) - EMKL Syah Berkah Mandiri"},
+                       {kode:"BLN", name:"(BLN) - Batulicin", door:"(BLN) - EMKL Sriwijaya"},
+                       {kode:"MKS", name:"(MKS) - Makassar", door:"(MKS) - EMKL Tuas Jaya"},
+                       {kode:"BAU", name:"(BAU) - Bau Bau", door:"(BAU) - EMKL Aman Samudera Lines"},
+                       {kode:"BIT", name:"(BIT) - Bitung", door:"(BIT) - EMKL Mitra Jasa Trans"},
+                       {kode:"TTE", name:"(TTE) - Ternate", door:"(TTE) - EMKL Artha Jaya"},
+                       {kode:"TUL", name:"(TUL) - Tual", door:"(TUL) - EMKL Martul Jaya"},
+                       {kode:"SON", name:"(SON) - Sorong", door:"(SON) - EMKL Rabani Tembalo"},
+                       {kode:"JAP", name:"(JAP) - Jayapura", door:"(JAP) - EMKL Alamha Irian Pratama"},
+                       {kode:"NAB", name:"(NAB) - Nabire", door:"(NAB) - EMKL Jasa Karunia Mandiri"},
+                       {kode:"MNK", name:"(MNK) - Manokwari", door:"(MNK) - EMKL Tanjung Bakaro"},
+                       {kode:"BIK", name:"(BIK) - Biak", door:"(BIK) - EMKL IRJA Teluk Matabori"},
+                       {kode:"SRU", name:"(SRU) - Serui", door:"(SRU) - EMKL Pelabuhan Wapnor"},
+                       {kode:"FFK", name:"(FFK) - Fak Fak", door:"(FFK) - EMKL Tanbers"},
+                       {kode:"KMN", name:"(KMN) - Kaimana", door:"(KMN) - EMKL Tanbers"},
+                       {kode:"TIM", name:"(TIM) - Timika", door:"(TIM) - EMKL Citra Baru Lintas Papua"},
+                       {kode:"MRK", name:"(MRK) - Merauke", door:"(MRK) - EMKL Merauke Nusantara Jaya"},]
     };
     this.send = this.send.bind(this)
   }
-
 
   renderHeader() {
     return (
@@ -60,54 +86,27 @@ export default class App extends React.Component {
   }
 
   send() {
-    send(nama,umur)
+    send(this.state)
   }
 
 
   //Destination
     renderRoomContainerDestination() {
-      let destinationList = [{name:"Belawan"},
-                             {name:"Pekanbaru"},
-                             {name:"Batam"},
-                             {name:"Banjarmasin"},
-                             {name:"Balikpapan"},
-                             {name:"Samarinda"},
-                             {name:"Tarakan"},
-                             {name:"Berau"},
-                             {name:"Nunukan"},
-                             {name:"Sampit"},
-                             {name:"Pontianak"},
-                             {name:"Batu Licin"},
-                             {name:"Makassar"},
-                             {name:"Bau Bau"},
-                             {name:"Bitung"},
-                             {name:"Ternate"},
-                             {name:"Tual"},
-                             {name:"Sorong"},
-                             {name:"Jayapura"},
-                             {name:"Nabire"},
-                             {name:"Manokwari"},
-                             {name:"Biak"},
-                             {name:"Serui"},
-                             {name:"Fak Fak"},
-                             {name:"Kaimana"},
-                             {name:"Timika"},
-                             {name:"Merauke"},]
       return(
         <TypeaheadDestination
-          units={destinationList}
+          units={this.state.destinationList}
           filterGlCode={this.state.destination}
           changeFilter={this.changeFilterDestination.bind(this)}
           onChange={this.setDestinationTypeahead.bind(this)}/>
       )
     }
 
-    setDestinationTypeahead(shipment) {
-      this.setState({ shipment: shipment })
+    setDestinationTypeahead(destination) {
+      this.setState({ destination: destination })
     }
 
-    changeFilterDestination(shipment) {
-      this.setState({ shipment: shipment})
+    changeFilterDestination(destination) {
+      this.setState({ destination: destination})
     }
 
 
@@ -160,6 +159,24 @@ export default class App extends React.Component {
   }
 
 
+  //AgentDooring
+    renderRoomContainerAgentDooring() {
+      return(
+        <TypeaheadDooring
+          units={this.state.destinationList}
+          filterGlCode={this.state.agentDooring}
+          changeFilter={this.changeFilterAgentDooring.bind(this)}
+          onChange={this.setAgentDooringTypeahead.bind(this)}/>
+      )
+    }
+
+    setAgentDooringTypeahead(agentDooring) {
+      this.setState({ agentDooring: agentDooring })
+    }
+
+    changeFilterAgentDooring(agentDooring) {
+      this.setState({ agentDooring: agentDooring})
+    }
 
 
   render() {
@@ -168,6 +185,7 @@ export default class App extends React.Component {
     let trucking = this.renderRoomContainerTrucking()
     let shipment = this.renderRoomContainerShipment()
     let destination = this.renderRoomContainerDestination()
+    let agentDooring = this.renderRoomContainerAgentDooring()
     return (
       <View>
       {header}
@@ -178,11 +196,10 @@ export default class App extends React.Component {
             <View style={styles.input}>
               <TextInput
                 autoCorrect={false}
-                returnKeyType='next'
+                returnKeyType='done'
                 underlineColorAndroid='transparent'
                 onChangeText={newText => this.setState({sales: newText})}
                 value={this.state.sales}
-                onSubmitEditing={(event) => {this.refs.SecondInput.focus()}}
               />
             </View>
 
@@ -196,133 +213,121 @@ export default class App extends React.Component {
             {trucking}
 
             <Text style={styles.textTitle}>Agent Dooring</Text>
-            <View style={styles.input}>
-              <TextInput
-                ref='FourInput'
-                autoCorrect={false}
-                returnKeyType='next'
-                underlineColorAndroid='transparent'
-                onChangeText={newText => this.setState({agent: newText})}
-                value={this.state.agent}
-                onSubmitEditing={(event) => {this.refs.FiveInput.focus()}}
-              />
-            </View>
+            {agentDooring}
 
             <Text style={styles.textTitle}>Party</Text>
             <View style={styles.input}>
               <TextInput
-                ref='FiveInput'
                 autoCorrect={false}
-                returnKeyType='next'
+                returnKeyType='done'
                 underlineColorAndroid='transparent'
                 onChangeText={newText => this.setState({party: newText})}
                 value={this.state.party}
-                onSubmitEditing={(event) => {this.refs.SixInput.focus()}}
               />
             </View>
 
             <Text style={styles.textTitle}>Desc. of Good</Text>
             <View style={styles.input}>
               <TextInput
-                ref='SixInput'
                 autoCorrect={false}
-                returnKeyType='next'
+                returnKeyType='done'
                 underlineColorAndroid='transparent'
-                onChangeText={newText => this.setState({equipment: newText})}
-                value={this.state.equipment}
-                onSubmitEditing={(event) => {this.refs.SevenInput.focus()}}
+                onChangeText={newText => this.setState({descOfGood: newText})}
+                value={this.state.descOfGood}
               />
             </View>
 
             <Text style={styles.textTitle}>Freight</Text>
             <View style={styles.input}>
               <TextInput
-                ref='SevenInput'
                 autoCorrect={false}
-                returnKeyType='next'
+                returnKeyType='done'
                 underlineColorAndroid='transparent'
                 onChangeText={newText => this.setState({freight: newText})}
                 value={this.state.freight}
+                type='number'
                 keyboardType='numeric'
-                onSubmitEditing={(event) => {this.refs.EightInput.focus()}}
               />
             </View>
 
             <Text style={styles.textTitle}>THC</Text>
             <View style={styles.input}>
               <TextInput
-                  ref='EightInput'
                   autoCorrect={false}
-                  returnKeyType='next'
+                  returnKeyType='done'
                   underlineColorAndroid='transparent'
                   onChangeText={newText => this.setState({thc: newText})}
                   value={this.state.thc}
-                  onSubmitEditing={(event) => {this.refs.NineInput.focus()}}
+                  type='number'
+                  keyboardType='numeric'
                 />
             </View>
 
             <Text style={styles.textTitle}> Harga Trucking</Text>
             <View style={styles.input}>
               <TextInput
-                  ref='NineInput'
                   autoCorrect={false}
                   returnKeyType='done'
                   underlineColorAndroid='transparent'
-                  onChangeText={newText => this.setState({trucking: newText})}
-                  value={this.state.trucking}
+                  onChangeText={newText => this.setState({truckingPrice: newText})}
+                  value={this.state.truckingPrice}
+                  type='number'
+                  keyboardType='numeric'
                 />
             </View>
 
             <Text style={styles.textTitle}>Harga Dooring</Text>
             <View style={styles.input}>
               <TextInput
-                  ref='NineInput'
                   autoCorrect={false}
                   returnKeyType='done'
                   underlineColorAndroid='transparent'
-                  onChangeText={newText => this.setState({trucking: newText})}
-                  value={this.state.trucking}
+                  onChangeText={newText => this.setState({dooringPrice: newText})}
+                  value={this.state.dooringPrice}
+                  type='number'
+                  keyboardType='numeric'
                 />
             </View>
 
             <Text style={[styles.textTitle, {marginTop:0}]}>DOC</Text>
             <View style={styles.input}>
               <TextInput
-                  ref='ElevenInput'
                   autoCorrect={false}
-                  returnKeyType='next'
+                  returnKeyType='done'
                   underlineColorAndroid='transparent'
                   onChangeText={newText => this.setState({doc: newText})}
                   value={this.state.doc}
-                  onSubmitEditing={(event) => {this.refs.TwelveInput.focus()}}
+                  type='number'
+                  keyboardType='numeric'
                 />
             </View>
 
             <Text style={styles.textTitle}>Modal</Text>
             <View style={styles.input}>
               <TextInput
-                  ref='TwelveInput'
                   autoCorrect={false}
                   returnKeyType='next'
                   underlineColorAndroid='transparent'
                   onChangeText={newText => this.setState({modal: newText})}
                   value={this.state.modal}
-                  onSubmitEditing={(event) => {this.refs.ThirteenInput.focus()}}
+                  type='number'
+                  keyboardType='numeric'
                 />
             </View>
 
             <Text style={styles.textTitle}>Harga Jual</Text>
             <View style={styles.input}>
               <TextInput
-                  ref='ThirteenInput'
                   autoCorrect={false}
                   underlineColorAndroid='transparent'
                   onChangeText={newText => this.setState({price: newText})}
                   value={this.state.price}
+                  type='number'
+                  keyboardType='numeric'
                 />
             </View>
 
-              {button}
+            {button}
 
           </ScrollView>
       </View>

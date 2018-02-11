@@ -84,7 +84,7 @@ export default class TypeaheadUnit extends Component {
 
   loadItems(filterGlCode) {
     let { units } = this.props
-    let unit = _.map(units, 'name')
+    let unit = _.map(units, 'door')
     let filter = new RegExp(filterGlCode, "i")
     let unitFilter = _.filter(unit, function(i) { return i.match(filter); });
     this.setState({
@@ -94,7 +94,7 @@ export default class TypeaheadUnit extends Component {
 
   selectItem(item) {
     let { getItemText, onChange, units } = this.props
-    let dooring = _.find(units, { 'name': item })
+    let dooring = _.find(units, { 'door': item })
     this.setState({ filterGlCode: item, expanded: false })
     onChange(item)
   }

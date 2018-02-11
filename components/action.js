@@ -1,6 +1,5 @@
-export function send(nama, umur) {
-  console.log('nama: ', nama);
-  console.log('umur: ', umur);
+export function send(data) {
+  console.log('data : ', data);
   fetch('http://localhost:8080/api/sendmail', {
     method: 'POST',
     headers: {
@@ -8,8 +7,7 @@ export function send(nama, umur) {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      nama: nama,
-      umur: umur,
+      data: data
     })
   })
 }

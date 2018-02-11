@@ -53,6 +53,7 @@ export default class TypeaheadUnit extends Component {
             underlineColorAndroid='transparent'
             value={filterGlCode}
             autoCorrect={false}
+            returnKeyType='done'
             keyboardType='ascii-capable'
             onChangeText={this.onChangeFilter.bind(this)} />
         </View>
