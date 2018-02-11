@@ -13,6 +13,7 @@ import {
 // import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import TypeaheadTrucking from '../TypeaheadTrucking'
 import TypeaheadShipment from '../TypeaheadShipment'
+import TypeaheadDestination from '../TypeaheadDestination'
 import styles from '../../styles/form'
 import {send} from '../action'
 
@@ -59,14 +60,84 @@ export default class App extends React.Component {
   }
 
   send() {
-    let nama = "vicky"
-    let umur = 27
     send(nama,umur)
   }
 
 
+  //Destination
+    renderRoomContainerDestination() {
+      let destinationList = [{name:"Belawan"},
+                             {name:"Pekanbaru"},
+                             {name:"Batam"},
+                             {name:"Banjarmasin"},
+                             {name:"Balikpapan"},
+                             {name:"Samarinda"},
+                             {name:"Tarakan"},
+                             {name:"Berau"},
+                             {name:"Nunukan"},
+                             {name:"Sampit"},
+                             {name:"Pontianak"},
+                             {name:"Batu Licin"},
+                             {name:"Makassar"},
+                             {name:"Bau Bau"},
+                             {name:"Bitung"},
+                             {name:"Ternate"},
+                             {name:"Tual"},
+                             {name:"Sorong"},
+                             {name:"Jayapura"},
+                             {name:"Nabire"},
+                             {name:"Manokwari"},
+                             {name:"Biak"},
+                             {name:"Serui"},
+                             {name:"Fak Fak"},
+                             {name:"Kaimana"},
+                             {name:"Timika"},
+                             {name:"Merauke"},]
+      return(
+        <TypeaheadDestination
+          units={destinationList}
+          filterGlCode={this.state.destination}
+          changeFilter={this.changeFilterDestination.bind(this)}
+          onChange={this.setDestinationTypeahead.bind(this)}/>
+      )
+    }
 
-//Dooring
+    setDestinationTypeahead(shipment) {
+      this.setState({ shipment: shipment })
+    }
+
+    changeFilterDestination(shipment) {
+      this.setState({ shipment: shipment})
+    }
+
+
+
+  //Pelayaran
+    renderRoomContainerShipment() {
+      let shipmentList = [{name:"SPIL"},
+                         {name:"MERATUS"},
+                         {name:"TEMAS"},
+                         {name:"TANTO"}]
+      return(
+        <TypeaheadShipment
+          units={shipmentList}
+          filterGlCode={this.state.shipment}
+          changeFilter={this.changeFilterShipment.bind(this)}
+          onChange={this.setShipmentTypeahead.bind(this)}/>
+      )
+    }
+
+    setShipmentTypeahead(shipment) {
+      this.setState({ shipment: shipment })
+    }
+
+    changeFilterShipment(shipment) {
+      this.setState({ shipment: shipment})
+    }
+
+
+
+//Trucking
   renderRoomContainerTrucking() {
     let truckingList = [{name:"MGT"},
                        {name:"TROFIS"},
@@ -90,38 +161,13 @@ export default class App extends React.Component {
 
 
 
-//Pelayaran
-  renderRoomContainerShipment() {
-    let shipmentList = [{name:"SPIL"},
-                       {name:"MERATUS"},
-                       {name:"TEMAS"},
-                       {name:"TANTO"}]
-    return(
-      <TypeaheadShipment
-        units={shipmentList}
-        filterGlCode={this.state.shipment}
-        changeFilter={this.changeFilterShipment.bind(this)}
-        onChange={this.setShipmentTypeahead.bind(this)}/>
-    )
-  }
-
-  setShipmentTypeahead(shipment) {
-    this.setState({ shipment: shipment })
-  }
-
-  changeFilterShipment(shipment) {
-    this.setState({ shipment: shipment})
-  }
-
-
-
-
 
   render() {
     let header = this.renderHeader()
     let button = this.renderButton()
     let trucking = this.renderRoomContainerTrucking()
     let shipment = this.renderRoomContainerShipment()
+    let destination = this.renderRoomContainerDestination()
     return (
       <View>
       {header}
@@ -141,16 +187,7 @@ export default class App extends React.Component {
             </View>
 
             <Text style={styles.textTitle}>Tujuan</Text>
-            <View style={styles.input}>
-              <TextInput
-                ref='SecondInput'
-                autoCorrect={false}
-                returnKeyType='done'
-                underlineColorAndroid='transparent'
-                onChangeText={newText => this.setState({destination: newText})}
-                value={this.state.destination}
-              />
-            </View>
+            {destination}
 
             <Text style={styles.textTitle}>Pelayaran</Text>
             {shipment}
