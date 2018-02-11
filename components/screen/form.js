@@ -1,16 +1,16 @@
 import React from 'react'
 import {
-  KeyboardAvoidingView,
   ScrollView,
   Text,
   TouchableHighlight,
+  TouchableOpacity,
   StyleSheet,
   TextInput,
   View,
-  Button
+  Button,
+  Alert
 } from 'react-native'
 
-// import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import TypeaheadTrucking from '../TypeaheadTrucking'
 import TypeaheadShipment from '../TypeaheadShipment'
 import TypeaheadDestination from '../TypeaheadDestination'
@@ -78,15 +78,42 @@ export default class App extends React.Component {
   renderButton() {
     return (
       <View style={[styles.button, {paddingBottom:200}]}>
+      <TouchableOpacity onPress={{}}>
           <Button
             onPress={this.send}
             title="Send Mail"/>
+        </TouchableOpacity>
       </View>
     )
   }
 
   send() {
     send(this.state)
+    Alert.alert(
+      'Alert',
+      'Pesan Telah Terkirim',
+      [
+        {text: 'OK', onPress: () => {
+          this.setState({
+            sales: '',
+            destination: '',
+            shipment: '',
+            trucking: '',
+            agentDooring: '',
+            party: '',
+            descOfGood: '',
+            freight: '',
+            thc: '',
+            truckingPrice: '',
+            dooringPrice: '',
+            doc: '',
+            modal: '',
+            price: '',
+          })
+        }},
+      ],
+      { cancelable: false }
+    )
   }
 
 
