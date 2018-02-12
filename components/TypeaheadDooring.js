@@ -51,7 +51,7 @@ export default class TypeaheadUnit extends Component {
         <View style={styless.input}>
           <TextInput
             underlineColorAndroid='transparent'
-            value={filterGlCode}
+            value={this.props.clickYes ? '' : filterGlCode}
             autoCorrect={false}
             style={{paddingBottom:0}}
             returnKeyType='done'

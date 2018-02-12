@@ -22,7 +22,7 @@ export default class TypeaheadUnit extends Component {
       filterGlCode: this.props.filterGlCode,
       expanded: false,
       dataSource: ds.cloneWithRows([]),
-      unitz: this.props.units
+      unitz: this.props.units,
     }
   }
 
@@ -51,7 +51,7 @@ export default class TypeaheadUnit extends Component {
         <View style={styless.input}>
           <TextInput
             underlineColorAndroid='transparent'
-            value={filterGlCode}
+            value={this.props.clickYes ? '' : filterGlCode}
             autoCorrect={false}
             style={{paddingBottom:0}}
             returnKeyType='done'

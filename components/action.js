@@ -1,5 +1,4 @@
 export function send(data) {
-  console.log('data : ', data);
   fetch('http://whispering-bayou-72578.herokuapp.com/api/sendmail', {
     method: 'POST',
     headers: {

@@ -36,6 +36,8 @@ export default class App extends React.Component {
       doc: '',
       modal: '',
       price: '',
+      click: false,
+      clickYes: false,
       destinationList: [{kode:"BLW", name:"(BLW) - Belawan", door:"(BLW) - CV Armada Sejahtera Trans"},
                        {kode:"PBR", name:"(PBR) - Pekanbaru", door:"(PBR) - PT. Sarana Tata Indoraya"},
                        {kode:"BTM", name:"(BTM) - Batam", door:"(BTM) - PT. Melvin Prima Perkasa"},
@@ -82,6 +84,7 @@ export default class App extends React.Component {
       <TouchableOpacity onPress={{}}>
           <Button
             onPress={this.send}
+            color= {this.state.click ? 'grey' : "rgb(0, 150, 139)"}
             title="Send Mail"/>
         </TouchableOpacity>
       </View>
@@ -89,12 +92,14 @@ export default class App extends React.Component {
   }
 
   send() {
-    send(this.state)
+    this.setState({ click: true })
     Alert.alert(
-      'Alert',
-      'Pesan Telah Terkirim',
+      '',
+      'Yakin Mengirim Pesan Ini ?',
       [
-        {text: 'OK', onPress: () => {
+        {text: 'Batal', onPress: () => { this.setState({ click: false })}},
+        {text: 'Ya', onPress: () => {
+          send(this.state),
           this.setState({
             sales: '',
             destination: '',
@@ -110,7 +115,22 @@ export default class App extends React.Component {
             doc: '',
             modal: '',
             price: '',
-          })
+            clickYes: true
+          }),
+          this.sendAlert()
+        }},
+      ],
+      { cancelable: false }
+    )
+  }
+
+  sendAlert() {
+    Alert.alert(
+      '',
+      'Pesan Telah Terkirim',
+      [
+        {text: 'OK', onPress: () => {
+          this.setState({ click: false })
         }},
       ],
       { cancelable: false }
@@ -124,6 +144,7 @@ export default class App extends React.Component {
         <TypeaheadDestination
           units={this.state.destinationList}
           filterGlCode={this.state.destination}
+          clickYes={this.state.clickYes}
           changeFilter={this.changeFilterDestination.bind(this)}
           onChange={this.setDestinationTypeahead.bind(this)}/>
       )
@@ -149,6 +170,7 @@ export default class App extends React.Component {
         <TypeaheadShipment
           units={shipmentList}
           filterGlCode={this.state.shipment}
+          clickYes={this.state.clickYes}
           changeFilter={this.changeFilterShipment.bind(this)}
           onChange={this.setShipmentTypeahead.bind(this)}/>
       )
@@ -173,6 +195,7 @@ export default class App extends React.Component {
       <TypeaheadTrucking
         units={truckingList}
         filterGlCode={this.state.trucking}
+        clickYes={this.state.clickYes}
         changeFilter={this.changeFilterTrucking.bind(this)}
         onChange={this.setTruckingTypeahead.bind(this)}/>
     )
@@ -193,6 +216,7 @@ export default class App extends React.Component {
         <TypeaheadDooring
           units={this.state.destinationList}
           filterGlCode={this.state.agentDooring}
+          clickYes={this.state.clickYes}
           changeFilter={this.changeFilterAgentDooring.bind(this)}
           onChange={this.setAgentDooringTypeahead.bind(this)}/>
       )
@@ -248,6 +272,7 @@ export default class App extends React.Component {
             <View style={styles.input}>
               <TextInput
                 autoCorrect={false}
+                style={{paddingBottom:0}}
                 returnKeyType='done'
                 underlineColorAndroid='transparent'
                 onChangeText={newText => this.setState({party: newText})}

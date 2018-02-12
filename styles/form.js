@@ -17,7 +17,8 @@ export default StyleSheet.create({
   company: {
     alignSelf: 'center',
     fontSize: 20,
-    bottom: 10,
+    bottom: 5,
+    fontWeight: 'bold'
   },
   text: {
     marginTop: 10,
