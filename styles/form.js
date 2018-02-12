@@ -9,7 +9,7 @@ export default StyleSheet.create({
   },
   input: {
     borderWidth:1,
-    height: 32,
+    height: 30,
     width: '90%',
     alignSelf: 'center',
     borderRadius:5

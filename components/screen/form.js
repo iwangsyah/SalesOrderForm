@@ -223,6 +223,7 @@ export default class App extends React.Component {
             <View style={styles.input}>
               <TextInput
                 autoCorrect={false}
+                style={{paddingBottom:0}}
                 returnKeyType='done'
                 underlineColorAndroid='transparent'
                 onChangeText={newText => this.setState({sales: newText})}
@@ -257,6 +258,7 @@ export default class App extends React.Component {
             <View style={styles.input}>
               <TextInput
                 autoCorrect={false}
+                style={{paddingBottom:0}}
                 returnKeyType='done'
                 underlineColorAndroid='transparent'
                 onChangeText={newText => this.setState({descOfGood: newText})}
@@ -268,6 +270,7 @@ export default class App extends React.Component {
             <View style={styles.input}>
               <TextInput
                 autoCorrect={false}
+                style={{paddingBottom:0}}
                 returnKeyType='done'
                 underlineColorAndroid='transparent'
                 onChangeText={newText => this.setState({freight: newText})}
@@ -281,6 +284,7 @@ export default class App extends React.Component {
             <View style={styles.input}>
               <TextInput
                   autoCorrect={false}
+                  style={{paddingBottom:0}}
                   returnKeyType='done'
                   underlineColorAndroid='transparent'
                   onChangeText={newText => this.setState({thc: newText})}
@@ -294,6 +298,7 @@ export default class App extends React.Component {
             <View style={styles.input}>
               <TextInput
                   autoCorrect={false}
+                  style={{paddingBottom:0}}
                   returnKeyType='done'
                   underlineColorAndroid='transparent'
                   onChangeText={newText => this.setState({truckingPrice: newText})}
@@ -307,6 +312,7 @@ export default class App extends React.Component {
             <View style={styles.input}>
               <TextInput
                   autoCorrect={false}
+                  style={{paddingBottom:0}}
                   returnKeyType='done'
                   underlineColorAndroid='transparent'
                   onChangeText={newText => this.setState({dooringPrice: newText})}
@@ -320,6 +326,7 @@ export default class App extends React.Component {
             <View style={styles.input}>
               <TextInput
                   autoCorrect={false}
+                  style={{paddingBottom:0}}
                   returnKeyType='done'
                   underlineColorAndroid='transparent'
                   onChangeText={newText => this.setState({doc: newText})}
@@ -333,6 +340,7 @@ export default class App extends React.Component {
             <View style={styles.input}>
               <TextInput
                   autoCorrect={false}
+                  style={{paddingBottom:0}}
                   returnKeyType='next'
                   underlineColorAndroid='transparent'
                   onChangeText={newText => this.setState({modal: newText})}
@@ -346,6 +354,7 @@ export default class App extends React.Component {
             <View style={styles.input}>
               <TextInput
                   autoCorrect={false}
+                  style={{paddingBottom:0}}
                   underlineColorAndroid='transparent'
                   onChangeText={newText => this.setState({price: newText})}
                   value={this.state.price}
