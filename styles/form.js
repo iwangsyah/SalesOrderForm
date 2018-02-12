@@ -14,8 +14,13 @@ export default StyleSheet.create({
     alignSelf: 'center',
     borderRadius:5
   },
+  company: {
+    alignSelf: 'center',
+    fontSize: 20,
+    bottom: 10,
+  },
   text: {
-    marginTop: 15,
+    marginTop: 10,
     color: 'white',
     fontSize: 40,
     alignSelf:'center',

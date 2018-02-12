@@ -71,6 +71,7 @@ export default class App extends React.Component {
     return (
       <View style={{backgroundColor: '#48D1CC', height:90}}>
         <Text style={styles.text}>SALES ORDER</Text>
+        <Text style={styles.company}>PT. NEOINTERNUSA</Text>
       </View>
     )
   }
