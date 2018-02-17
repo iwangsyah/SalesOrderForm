@@ -23,6 +23,7 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       sales: '',
+      costumer: '',
       destination: '',
       shipment: '',
       trucking: '',
@@ -103,6 +104,7 @@ export default class App extends React.Component {
           send(this.state),
           this.setState({
             sales: '',
+            costumer: '',
             destination: '',
             shipment: '',
             trucking: '',
@@ -254,6 +256,18 @@ export default class App extends React.Component {
                 underlineColorAndroid='transparent'
                 onChangeText={newText => this.setState({sales: newText})}
                 value={this.state.sales}
+              />
+            </View>
+
+            <Text style={styles.textTitle}>Costumer</Text>
+            <View style={styles.input}>
+              <TextInput
+                autoCorrect={false}
+                style={{paddingBottom:0}}
+                returnKeyType='done'
+                underlineColorAndroid='transparent'
+                onChangeText={newText => this.setState({costumer: newText})}
+                value={this.state.costumer}
               />
             </View>
 
